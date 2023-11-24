@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water app</title>
+    <link rel="shortcut icon" href="Img/Gotita.png" type="image/x-icon"> 
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Img/School2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: normal;
+            color: white;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: white;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px; /* Reducido el padding */
+            font-size: 14px; /* Tamaño de fuente reducido */
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%; /* Reducir el ancho máximo al 80% */
+            height: auto;
+            max-height: 80vh; /* Establecer la altura máxima al 80% de la altura visible del dispositivo */
+            overflow: hidden; /* Ocultar el desbordamiento */
+        }
+
+        #mapa {
+            text-align: center;
+            margin-top: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body onload="agregarImagen()">
+    <h1>Navegation</h1>
+    
+    <!-- Llamamos a la función agregarImagen() al cargar la página -->
+    <img id="mapaImagen" src="" alt="Descripción de la imagen">
+
+    <h2>School map</h2>
+    <div id="mapa">
+
+
+    </div>
+
+    <script>
+        function agregarImagen() {
+            var urlImagen = localStorage.getItem('urlImagen');
+            document.getElementById('mapaImagen').src = urlImagen;
+        }
+    </script>
+</body>
+</html>

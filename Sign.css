@@ -1,0 +1,64 @@
+body {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Img/sleppingkitten.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(5, 5, 5);
+
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="button"] {
+    background-color: #8e44ad; /* Cambiado a morado */
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    background-image: url('url_de_tu_imagen'); /* Reemplaza 'url_de_tu_imagen' con la URL de tu imagen de fondo */
+    background-size: cover;
+}
+
+input[type="button"]:hover {
+    background-color: #6c3483; /* Color morado más oscuro al pasar el mouse */
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}

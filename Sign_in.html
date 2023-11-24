@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign in</title>
+	<link rel="shortcut icon" href="Img/Gotita.png" type="image/x-icon"> 
+	<link rel="stylesheet" href="Sign.css">
+	<script>
+		function checkLogin(event) {
+			if (event.keyCode === 13) {
+				var username = document.getElementById("username").value;
+				var password = document.getElementById("password").value;
+				if (username == "Admin" && password == "Pswrd") {
+					document.getElementById("loginButton").disabled = false;
+				} else {
+					document.getElementById("loginButton").disabled = true;
+					alert("The data is incorrect, please verify and try again.");
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<label for="username">Username:</label><br>
+		<input type="text" id="username" name="username"><br>
+		<label for="password">Password:</label><br>
+		<input type="password" id="password" name="password" onkeyup="checkLogin(event)"><br><br>
+		<input type="button" id="loginButton" value="Sign in" onclick="location.href='Availability.html'" disabled>
+	</form>
+</body>
+<footer>
+	<a href="index.html">Back</a>
+</footer>
+</html>

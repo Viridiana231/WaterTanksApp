@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration</title>
+    <link rel="shortcut icon" href="Img/Gotita.png" type="image/x-icon"> 
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Img/School2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, comic-serif;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: normal;
+            color: white;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        #botellones {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .availability-box {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Water tanks available</h1>
+
+    <!-- Agregamos los recuadros para seleccionar la disponibilidad -->
+    <div id="availability-options">
+        <label for="garrafon1">Tank 1:</label>
+        <select id="garrafon1" onchange="actualizarEstado()">
+            <option value="no-water">No water</option>
+            <option value="available">Available</option>
+        </select>
+
+        <label for="garrafon2">Tank 2:</label>
+        <select id="garrafon2" onchange="actualizarEstado()">
+            <option value="no-water">No water</option>
+            <option value="available">Available</option>
+        </select>
+
+        <label for="garrafon3">Tank 3:</label>
+        <select id="garrafon3" onchange="actualizarEstado()">
+            <option value="no-water">No water</option>
+            <option value="available">Available</option>
+        </select>
+    </div>
+
+    <div id="botellones">
+        <!-- Mantenemos la imagen del mapa en un contenedor -->
+        <img src="Img/ningunodisponible.png" alt="Level map" id="mapaImagen" style="max-width: 60%;">
+
+        <!-- Agregamos los recuadros de disponibilidad -->
+        <div id="availability-box-garrafon1" class="availability-box">
+            <p>Garrafón 1: <span id="estado-garrafon1">No water</span></p>
+        </div>
+
+        <div id="availability-box-garrafon2" class="availability-box">
+            <p>Garrafón 2: <span id="estado-garrafon2">No water</span></p>
+        </div>
+
+        <div id="availability-box-garrafon3" class="availability-box">
+            <p>Garrafón 3: <span id="estado-garrafon3">No water</span></p>
+        </div>
+    </div>
+
+    <!-- Modificamos el enlace hacia la segunda página -->
+    <a href="main.html" onclick="agregarImagen()">Go to Water App</a>
+
+    <script >
+        function actualizarEstado() {
+            // Actualizamos el estado de disponibilidad según las selecciones
+            actualizarGarrafon('garrafon1', 'estado-garrafon1');
+            actualizarGarrafon('garrafon2', 'estado-garrafon2');
+            actualizarGarrafon('garrafon3', 'estado-garrafon3');
+            
+        }
+        function actualizarGarrafon(selectId, estadoId) {
+            // Obtenemos el valor seleccionado del recuadro desplegable
+            var seleccion = document.getElementById(selectId).value;
+        
+            // Actualizamos el estado del garrafón en el recuadro correspondiente
+            var estadoElemento = document.getElementById(estadoId);
+            estadoElemento.textContent = seleccion;
+        
+            // Actualizamos la imagen según la disponibilidad seleccionada
+            var imagen = document.getElementById('mapaImagen');
+            var urlImagen = document.getElementById('mapaImagen').src;
+            localStorage.setItem('urlImagen', urlImagen);
+        
+            // Condiciones adicionales
+            if (document.getElementById('garrafon1').value === 'available' &&
+                document.getElementById('garrafon2').value === 'available' &&
+                document.getElementById('garrafon3').value === 'available') {
+                // Garrafon 1, 2 y 3 disponibles
+                imagen.src = 'Img/todosdisponibles.png';
+            } else if (document.getElementById('garrafon1').value === 'available' &&
+                document.getElementById('garrafon2').value === 'available') {
+                // Garrafon 1 y 2 disponibles, 3 no disponible
+                imagen.src = 'Img/1-2.png';
+            } else if (document.getElementById('garrafon1').value === 'available' &&
+                document.getElementById('garrafon3').value === 'available') {
+                // Garrafon 1 y 3 disponibles, 2 no disponible
+                imagen.src = 'Img/1-3.png';
+            } else if (document.getElementById('garrafon2').value === 'available' &&
+                document.getElementById('garrafon3').value === 'available') {
+                // Garrafon 2 y 3 disponibles, 1 no disponible
+                imagen.src = 'Img/2-3.png';
+            } else if (document.getElementById('garrafon1').value === 'available') {
+                // Garrafon 1 disponible, 2 y 3 no disponibles
+                imagen.src = 'Img/1.png';
+            } else if (document.getElementById('garrafon2').value === 'available') {
+                // Garrafon 2 disponible, 1 y 3 no disponibles
+                imagen.src = 'Img/2.png';
+            } else if (document.getElementById('garrafon3').value === 'available') {
+                // Garrafon 3 disponible, 1 y 2 no disponibles
+                imagen.src = 'Img/3.png';
+            } else {
+                // Todas las opciones en 'no-water'
+                imagen.src = 'Img/ningunodisponible.png';
+            }
+        }
+
+        function agregarImagen() {
+            var urlImagen = localStorage.getItem('urlImagen');
+            document.getElementById('mapaImagen').src = urlImagen;
+        }
+    </script>
+</body>
+</html>
